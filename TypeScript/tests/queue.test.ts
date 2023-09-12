@@ -1,12 +1,50 @@
+import { create } from "domain";
 import { newArrayIntQueue } from "../src/arrayqueue";
 import { newLinkedListIntQueue } from "../src/linkedlistqueue.js";
 
 // pick one queue implementation, can run test easily for both, due to subtype polymorphism
-let createQueue = newLinkedListIntQueue
-// let createQueue = newArrayIntQueue
+ let createQueue = newLinkedListIntQueue
+ // let createQueue = newArrayIntQueue
 
 // TODOs:
 // write more test cases to test dequeue and clear functions.
+
+// test ensureCapacity function
+test("test clear: newly cleared list should be empty", () => {
+    const queue = createQueue()
+    queue.enqueue(20)
+    queue.dequeue()
+    queue.enqueue(20)
+    queue.enqueue(20)
+    queue.enqueue(20)
+    queue.enqueue(20)
+    queue.enqueue(20)
+    queue.enqueue(20)
+    queue.enqueue(20)
+    queue.enqueue(20)
+    queue.enqueue(20)
+    queue.enqueue(20)
+    queue.enqueue(20)
+})
+
+// test clear function
+test("test clear: newly cleared list should be empty", () => {
+    const queue2 = createQueue()
+    queue2.clear()
+    expect(queue2).toEqual(queue2)
+})
+
+// test dequeue function
+test("test dequeue: dequeue on empty list should be null", () => {
+    expect(createQueue().dequeue()).toBeNull()
+})
+
+// test dequeue function
+test("test dequeue: dequeue on nonempty list", () => {
+    const queue1 = createQueue()
+    queue1.enqueue(3)
+    expect(queue1.dequeue()).toEqual(3)
+})
 
 test("test isEmpty: newly created list should be empty", () => {
     expect(createQueue().isEmpty()).toBeTruthy()
